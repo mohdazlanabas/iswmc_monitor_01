@@ -15,6 +15,31 @@ This project is a web-based data collection application for the Greenviro SPAJ I
     *   Anaerobic Digester (ADS)
     *   Depot Repair Area (DRA)
 
+## System and Program Architecture
+
+The application follows a client-server architecture:
+
+*   **Client-Side (Frontend):**
+    *   Users interact with the application through web browsers.
+    *   The user interface is built using **EJS (Embedded JavaScript)** templates for dynamic content rendering.
+    *   **Bootstrap** is used for responsive design and styling, ensuring a consistent look and feel across various devices.
+    *   Client-side JavaScript handles basic form interactions and date calculations (e.g., determining the day of the week from a selected date).
+
+*   **Server-Side (Backend):**
+    *   Powered by **Node.js** and the **Express.js** framework.
+    *   Handles HTTP requests from the client (e.g., displaying pages, submitting form data).
+    *   Processes incoming data, validates it, and interacts with the database.
+    *   Renders EJS templates and sends them back to the client.
+
+*   **Database:**
+    *   **PostgreSQL** is used as the primary data store.
+    *   The application connects to the PostgreSQL database to store and retrieve operational data for SGP, MRF, and LTP facilities.
+    *   Database schema creation (tables for `sgp`, `mrf`, `ltp`) is handled programmatically on application startup if tables do not exist.
+
+*   **Deployment:**
+    *   The application is designed for deployment on cloud platforms like **Render**, which provides an environment for both the web service (Node.js/Express) and the PostgreSQL database.
+    *   Environment variables are used to securely manage database connection strings and other configuration settings in production environments.
+
 ## Technologies Used
 
 *   **Backend:** Node.js, Express.js
@@ -108,3 +133,10 @@ To run this application on your local machine, you will need to have Node.js and
 ## Database
 
 The application uses a PostgreSQL database. The schema is defined in `index.js` and the tables (`sgp`, `mrf`, `ltp`) are created automatically when the application starts if they do not already exist.
+
+---
+
+## Developer Information
+
+This program and application were developed by Azlan.
+Email: coderazlan@gmail.com
