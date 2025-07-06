@@ -48,6 +48,7 @@ This is like giving your program its own little house on the internet.
 3.  **Connect GitHub:**
     *   Render will ask to connect to your GitHub account. Follow the steps to allow it.
     *   Once connected, you'll see a list of your GitHub projects. Find and select the one you just pushed (e.g., `iswmc-monitor`).
+
 4.  **Give Your Service a Name:**
     *   **Name:** Type a name for your website (e.g., `iswmc-monitor-app`).
     *   **Region:** Choose a location closest to you or your users (e.g., "Oregon (US West)").
@@ -56,6 +57,8 @@ This is like giving your program its own little house on the internet.
     *   **Build Command:** This tells Render how to get your program ready. Type: `npm install`
     *   **Start Command:** This tells Render how to run your program. Type: `node index.js`
     *   **Instance Type:** Choose "Free" (it's usually the first option).
+
+
 5.  **Create Web Service:** Click the blue button that says **"Create Web Service"**.
 
 Render will now start working! It will download your code, install everything it needs, and try to run your program. This might take a few minutes. You'll see a "Deploy Log" showing you what's happening.
