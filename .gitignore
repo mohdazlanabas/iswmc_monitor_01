@@ -1,2 +1,4 @@
 node_modules/
 database/iswmc.db
+.DS_Store
+.idea/
