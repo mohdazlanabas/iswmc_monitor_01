@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Recovery Facility (MRF)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Material Recovery Facility (MRF)</h1>
+        <form action="/mrf" method="POST">
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="day">Day</label>
+                <input type="text" class="form-control" id="day" name="day" readonly>
+            </div>
+
+            <h2>Trucks</h2>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="trucks_compactor">Compactor (qty)</label>
+                    <select class="form-control" id="trucks_compactor" name="trucks_compactor">
+                        <% for(let i = 0; i <= 50; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="trucks_open_tipper">Open Tipper (qty)</label>
+                    <select class="form-control" id="trucks_open_tipper" name="trucks_open_tipper">
+                        <% for(let i = 0; i <= 50; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="trucks_roro">RORO (qty)</label>
+                    <select class="form-control" id="trucks_roro" name="trucks_roro">
+                        <% for(let i = 0; i <= 50; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="trucks_open_truck">Open Truck (qty)</label>
+                    <select class="form-control" id="trucks_open_truck" name="trucks_open_truck">
+                        <% for(let i = 0; i <= 50; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+
+            <h2>Incoming Tonnage</h2>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="incoming_bunker">Bunker (tons)</label>
+                    <select class="form-control" id="incoming_bunker" name="incoming_bunker">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="incoming_1st_floor_sorting">1st Floor Sorting (tons)</label>
+                    <select class="form-control" id="incoming_1st_floor_sorting" name="incoming_1st_floor_sorting">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="incoming_tipping_platform">Tipping Platform (tons)</label>
+                    <select class="form-control" id="incoming_tipping_platform" name="incoming_tipping_platform">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="incoming_line_a_process">Line A Process (ton)</label>
+                    <select class="form-control" id="incoming_line_a_process" name="incoming_line_a_process">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="incoming_line_b_process">Line B Process (ton)</label>
+                    <select class="form-control" id="incoming_line_b_process" name="incoming_line_b_process">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="incoming_recyclables_plastics">Recyclables - Plastics (ton)</label>
+                    <select class="form-control" id="incoming_recyclables_plastics" name="incoming_recyclables_plastics">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="incoming_recyclables_metals">Recyclables - Metals (ton)</label>
+                    <select class="form-control" id="incoming_recyclables_metals" name="incoming_recyclables_metals">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="incoming_leachate">Leachate (ton)</label>
+                    <select class="form-control" id="incoming_leachate" name="incoming_leachate">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+
+            <h2>Outgoing Tonnage</h2>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="outgoing_organic_output">Organic Output (ton)</label>
+                    <select class="form-control" id="outgoing_organic_output" name="outgoing_organic_output">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="outgoing_inert_output">Inert Output (ton)</label>
+                    <select class="form-control" id="outgoing_inert_output" name="outgoing_inert_output">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+
+            <h2>Grappler A</h2>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="grappler_a_grabs">Number of Grabs (qty)</label>
+                    <select class="form-control" id="grappler_a_grabs" name="grappler_a_grabs">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="grappler_a_mode">Mode</label>
+                    <select class="form-control" id="grappler_a_mode" name="grappler_a_mode">
+                        <option value="Auto">Auto</option>
+                        <option value="Manual">Manual</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="grappler_a_running">Running (Hours)</label>
+                    <select class="form-control" id="grappler_a_running" name="grappler_a_running">
+                        <% for(let i = 0; i <= 24; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="grappler_a_downtime">Downtime (Hrs)</label>
+                    <select class="form-control" id="grappler_a_downtime" name="grappler_a_downtime">
+                        <% for(let i = 0; i <= 24; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="grappler_a_working">Working (Hours)</label>
+                    <select class="form-control" id="grappler_a_working" name="grappler_a_working">
+                        <% for(let i = 0; i <= 24; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+
+            <h2>Grappler B</h2>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="grappler_b_grabs">Number of Grabs (qty)</label>
+                    <select class="form-control" id="grappler_b_grabs" name="grappler_b_grabs">
+                        <% for(let i = 0; i <= 500; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="grappler_b_mode">Mode</label>
+                    <select class="form-control" id="grappler_b_mode" name="grappler_b_mode">
+                        <option value="Auto">Auto</option>
+                        <option value="Manual">Manual</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="grappler_b_running">Running (Hours)</label>
+                    <select class="form-control" id="grappler_b_running" name="grappler_b_running">
+                        <% for(let i = 0; i <= 24; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="grappler_b_downtime">Downtime (Hrs)</label>
+                    <select class="form-control" id="grappler_b_downtime" name="grappler_b_downtime">
+                        <% for(let i = 0; i <= 24; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="grappler_b_working">Working (Hours)</label>
+                    <select class="form-control" id="grappler_b_working" name="grappler_b_working">
+                        <% for(let i = 0; i <= 24; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/" class="btn btn-secondary">Home</a>
+        </form>
+    </div>
+    <script>
+        const dateInput = document.getElementById('date');
+        const dayInput = document.getElementById('day');
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        dateInput.addEventListener('change', () => {
+            const date = new Date(dateInput.value);
+            dayInput.value = days[date.getDay()];
+        });
+    </script>
+</body>
+</html>

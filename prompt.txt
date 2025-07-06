@@ -1,0 +1,47 @@
+GENERAL APP DESCRIPTION
+
+I would like to build a node.js based data collection application that willl eventually be served to the web.
+Its is the Greenviro SPAJ ISWMC Operation Data Programs.
+Although its one program it has 5 different section to collect data for different facility in the ISWMC.
+The six sections are Security Guard Post (SGP), Weighbridge (WBS), Material Recovery Facility (MRF), Leachate Treatment Plant (LTP), Anaerobic Digester (ADS), Depot Repair Area (DRA).
+We will build one by one over time building on the project.
+I would like the database to using SQL.
+In general all six modules are on the same web but different page collecting datas, stored in SQL.
+The data is then used to provide data visualization on the web page.
+
+THE FIELDS AREA
+
+SECURITY GUARD POST (SGP)
+A window for auto selecting the date and day.
+Here are the seven fields for the user to key in by typing.
+Name, From Company, Purpose Of Visit, Phone Number, ID Number, Email Address, PIC To Meet
+
+Material Recovery Facility (MRF)
+Here are the fields for the user to key in by selecting a dropdown menu.
+A window for auto selecting the date and day.
+Sevem Different sections namely Trucks, Incoming Tonnage, Outgoing Tonnage, Grappler A, Grappler B
+Date: A dropdown menu to select date, day display is automatic
+Trucks: Has Four Types namely Compactor (qty) , Open Tipper (qty), RORO (qty), Open Truck (qty). Each of the four the data input is via dropdown menu starting from 0 to 50.
+Incoming Tonnage: Has Eight Types namely: Bunker (tons), 1st Floor Sorting (tons), Tipping Platform (tons), Line A Process (tons), Line B Process (ton), recyclables-plastics (ton), recyclables-metals (ton), Leachate (ton).
+Outgoing Tonnage: Has Two Types namely: Organic Output (ton), Inert Output (ton),
+    Both Incoming and Outgoing Tonnage qty selectable dropdown selection start from 0 to 500.
+Grappler A: Number of Grabs (qty), Mode (Auto or Manual, Running (Hours), Downtime (Hrs), Working (Hours)
+Grappler B: Number of Grabs (qty), Mode (Auto or Manual, Running (Hours), Downtime (Hrs), Working (Hours)
+    Those with qty units has dropdown menu from 0 to 500, Those with hours unit has values of 0 to 24
+
+Leachate Treatment Plant (LTP)
+Here are the fields for the user to key in.
+By selecting a dropdown menu - Operation (Hours), Flowrate (meter cube), Incoming Flow meter cube), Treated Final Discharge (Meter Cube)
+By typing in comments - Issues
+
+Issues & Concerns
+
+For Weighbridge (WBS), Anaerobic Digester (ADS), Depot Repair Area (DRA) put a place holder for this 3 for later development.
+
+APP STYLING
+
+I would like the app to be simple, white background and black text
+I must be desktop and mobile friendly
+Able to work on all web browser particularly Chrome, Safari, Firefox.
+
+Add Home Button to All Pages.

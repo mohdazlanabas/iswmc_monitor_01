@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Guard Post (SGP)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Security Guard Post (SGP)</h1>
+        <form action="/sgp" method="POST">
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="day">Day</label>
+                <input type="text" class="form-control" id="day" name="day" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="from_company">From Company</label>
+                <input type="text" class="form-control" id="from_company" name="from_company" required>
+            </div>
+            <div class="form-group">
+                <label for="purpose_of_visit">Purpose Of Visit</label>
+                <input type="text" class="form-control" id="purpose_of_visit" name="purpose_of_visit" required>
+            </div>
+            <div class="form-group">
+                <label for="phone_number">Phone Number</label>
+                <input type="text" class="form-control" id="phone_number" name="phone_number" required>
+            </div>
+            <div class="form-group">
+                <label for="id_number">ID Number</label>
+                <input type="text" class="form-control" id="id_number" name="id_number" required>
+            </div>
+            <div class="form-group">
+                <label for="email_address">Email Address</label>
+                <input type="email" class="form-control" id="email_address" name="email_address" required>
+            </div>
+            <div class="form-group">
+                <label for="pic_to_meet">PIC To Meet</label>
+                <input type="text" class="form-control" id="pic_to_meet" name="pic_to_meet" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/" class="btn btn-secondary">Home</a>
+        </form>
+    </div>
+    <script>
+        const dateInput = document.getElementById('date');
+        const dayInput = document.getElementById('day');
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        dateInput.addEventListener('change', () => {
+            const date = new Date(dateInput.value);
+            dayInput.value = days[date.getDay()];
+        });
+    </script>
+</body>
+</html>

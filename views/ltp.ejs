@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leachate Treatment Plant (LTP)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Leachate Treatment Plant (LTP)</h1>
+        <form action="/ltp" method="POST">
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="day">Day</label>
+                <input type="text" class="form-control" id="day" name="day" readonly>
+            </div>
+            <div class="form-group">
+                <label for="operation">Operation (Hours)</label>
+                <select class="form-control" id="operation" name="operation">
+                    <% for(let i = 0; i <= 24; i++) { %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="flowrate">Flowrate (meter cube)</label>
+                <select class="form-control" id="flowrate" name="flowrate">
+                    <% for(let i = 0; i <= 500; i++) { %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="incoming_flow">Incoming Flow (meter cube)</label>
+                <select class="form-control" id="incoming_flow" name="incoming_flow">
+                    <% for(let i = 0; i <= 500; i++) { %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="treated_final_discharge">Treated Final Discharge (Meter Cube)</label>
+                <select class="form-control" id="treated_final_discharge" name="treated_final_discharge">
+                    <% for(let i = 0; i <= 500; i++) { %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="issues">Issues</label>
+                <textarea class="form-control" id="issues" name="issues" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/" class="btn btn-secondary">Home</a>
+        </form>
+    </div>
+    <script>
+        const dateInput = document.getElementById('date');
+        const dayInput = document.getElementById('day');
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        dateInput.addEventListener('change', () => {
+            const date = new Date(dateInput.value);
+            dayInput.value = days[date.getDay()];
+        });
+    </script>
+</body>
+</html>
