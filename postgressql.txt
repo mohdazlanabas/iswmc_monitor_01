@@ -1,0 +1,97 @@
+  Step 1: Open your Terminal and Connect to PostgreSQL
+
+  First, make sure your PostgreSQL server is running. (You previously started it with
+  brew services start postgresql@14).
+
+  Now, open your terminal and connect to the default postgres database. This database
+  usually exists by default and allows you to manage other databases and users.
+
+You are now in the psql interactive shell. You should see a prompt like postgres=# or
+  your_system_username=#.
+
+  Step 2: Create a New User (Role) with a Password
+
+  In the psql prompt, type the following command to create a new user (PostgreSQL
+  calls them "roles"). Remember to replace YOUR_USERNAME and YOUR_PASSWORD.
+
+   1 CREATE USER YOUR_USERNAME WITH PASSWORD 'YOUR_PASSWORD';
+
+  Example:
+
+   1 CREATE USER myappuser WITH PASSWORD 'my_strong_secure_password';
+
+  Press Enter after typing the command. You should see CREATE ROLE if successful.
+
+  Step 3: Create a New Database and Assign Ownership
+
+  Next, create a new database and make the user you just created the owner of this
+  database. Replace YOUR_DATABASE_NAME and YOUR_USERNAME.
+
+   1 CREATE DATABASE YOUR_DATABASE_NAME OWNER YOUR_USERNAME;
+
+  Example:
+
+   1 CREATE DATABASE iswmc_data OWNER myappuser;
+
+  Press Enter. You should see CREATE DATABASE if successful.
+
+  Step 4: Grant All Privileges on the Database to the User
+
+  It's good practice to explicitly grant all necessary permissions to your
+  application user on its database. Replace YOUR_DATABASE_NAME and YOUR_USERNAME.
+
+   1 GRANT ALL PRIVILEGES ON DATABASE YOUR_DATABASE_NAME TO YOUR_USERNAME;
+
+  Example:
+
+   1 GRANT ALL PRIVILEGES ON DATABASE iswmc_data TO myappuser;
+
+  Press Enter. You should see GRANT if successful.
+
+
+  Step 5: Exit `psql`
+
+  To leave the psql interactive shell, type:
+
+   1 \q
+
+  Press Enter.
+
+
+
+  Step 6: How to See (Verify) Your New User and Database
+
+  You can verify that your user and database were created by connecting to PostgreSQL
+  again.
+
+
+   1. Connect to PostgreSQL as the `postgres` superuser (or your system user):
+
+✦  2. List all users (roles):
+      In the psql prompt, type:
+
+   1     \du
+
+      Press Enter. You should see a list of roles, including YOUR_USERNAME you just
+  created.
+
+   3. List all databases:
+      In the psql prompt, type:
+
+   1     \l
+
+      Press Enter. You should see a list of databases, including YOUR_DATABASE_NAME
+  you just created, with YOUR_USERNAME as its owner.
+
+   4. Exit `psql`:
+
+   1     \q
+
+  Summary of your new credentials:
+
+
+   * Username: YOUR_USERNAME (the one you chose in Step 2)
+   * Password: YOUR_PASSWORD (the one you chose in Step 2)
+   * Database Name: YOUR_DATABASE_NAME (the one you chose in Step 3)
+
+  Use these credentials to update your .env file for your application's DATABASE_URL.

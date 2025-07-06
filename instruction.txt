@@ -86,8 +86,9 @@ Now we need to tell your website where its database is. We do this using somethi
 
 1.  **Get Your Database's Secret Address:**
     *   Once your PostgreSQL database is ready (its status will say "Available"), click on its name on your Render dashboard.
-    *   On the database's page, look for something called **"External Database URL"**. It will look like a long web address starting with `postgresql://`.
+    *   On the database's page, look for something called **"External Database URL"**. It will look like a long web address starting with `postgresql://`. This URL contains all the information your program needs to connect to the database, including the username and password.
     *   **Copy this entire address!** It's very important.
+
 2.  **Tell Your Web Service the Secret Address:**
     *   Go back to your Web Service (the one you created in Part 1, e.g., `iswmc-monitor-app`). Click on its name on your Render dashboard.
     *   On your Web Service's page, click on the **"Environment"** tab (or sometimes it's called "Environment Variables").
@@ -110,7 +111,23 @@ Your Web Service will now automatically restart. When it starts again, it will r
         ```bash
         npm install pg
         ```
-    2.  **Change `index.js`:** You will need to open your `index.js` file (and any other files that talk to the database) and change how it connects. Instead of connecting to a SQLite file, it needs to connect to the `DATABASE_URL` environment variable.
+    2.  **Install `dotenv` for Local Development:** If you want to run your app on your own computer and connect to a local PostgreSQL database, you'll need a package called `dotenv`. This helps your program read database connection details from a special file.
+        ```bash
+        npm install dotenv
+        ```
+    3.  **Create a `.env` file (for Local Development Only):** In the main folder of your project on your computer, create a new file named `.env`. Inside this file, you'll put the connection details for your *local* PostgreSQL database. It will look something like this:
+        ```
+        DATABASE_URL=postgresql://your_username:your_password@localhost:5432/your_database_name
+        ```
+        **Important:** Replace `your_username`, `your_password`, `localhost:5432`, and `your_database_name` with the actual details for your local PostgreSQL database. **Never share this `.env` file or upload it to GitHub!** It contains your sensitive information.
+
+    4.  **Change `index.js`:** You will need to open your `index.js` file (and any other files that talk to the database) and change how it connects. Instead of connecting to a SQLite file, it needs to connect to the `DATABASE_URL` environment variable.
+        *   **Make sure this line is at the very top of your `index.js` file:**
+            ```javascript
+            require('dotenv').config();
+            ```
+            This line tells your program to look for the `.env` file and load the `DATABASE_URL` from it when you're running the app on your computer.
+
         *   **Example (Conceptual - your code will be different!):**
             Right now, your code might look something like this for SQLite:
             ```javascript
@@ -141,7 +158,7 @@ Your Web Service will now automatically restart. When it starts again, it will r
             ```
             **You MUST update your code to use `process.env.DATABASE_URL` to connect to PostgreSQL.**
 
-    3.  **Push Changes to GitHub Again:** After you change your `index.js` file, you need to save it and push it to GitHub again so Render knows about the new code:
+    5.  **Push Changes to GitHub Again:** After you change your `index.js` file, you need to save it and push it to GitHub again so Render knows about the new code:
         ```bash
         git add .
         git commit -m "Updated database connection for PostgreSQL"

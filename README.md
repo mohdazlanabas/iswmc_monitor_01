@@ -106,20 +106,27 @@ To run this application on your local machine, you will need to have Node.js and
     ```
 
 3.  **Set up Local PostgreSQL Database:**
-    *   Create a new PostgreSQL database on your local machine.
-    *   Get your database connection string. It will look something like this: `postgresql://USER:PASSWORD@HOST:PORT/DATABASE_NAME`
+    *   Create a new PostgreSQL database on your local machine (e.g., using `psql` or a GUI tool like pgAdmin).
+    *   Obtain your database connection string. This string contains the necessary credentials (username, password, host, port, and database name) to connect to your PostgreSQL instance. It typically looks like this:
+        `postgresql://YOUR_USERNAME:YOUR_PASSWORD@YOUR_HOST:YOUR_PORT/YOUR_DATABASE_NAME`
+        **Important:** Replace `YOUR_USERNAME`, `YOUR_PASSWORD`, `YOUR_HOST`, `YOUR_PORT`, and `YOUR_DATABASE_NAME` with your actual database credentials.
 
-4.  **Create Environment File:**
-    *   Create a new file named `.env` in the root of the project.
-    *   Add your local database connection string to this file:
+4.  **Create Environment File (`.env`):**
+    *   Create a new file named `.env` in the root of your project (`/Users/rogerwoolie/Documents/Pers_CScience_2025/iswmc_monitor/`).
+    *   Add your local database connection string to this file. For example:
         ```
-        DATABASE_URL=your_postgresql_connection_string
+        DATABASE_URL=postgresql://myuser:mypassword@localhost:5432/mydatabase
         ```
-    *   **Important:** You will need to install a package to read this `.env` file for local development. Run:
+    *   **Security Note:** Never commit your `.env` file to version control (like Git) as it contains sensitive information. It's already included in `.gitignore` for this project.
+
+5.  **Install `dotenv` (if not already installed):**
+    *   This package helps your Node.js application load environment variables from the `.env` file during local development. Run:
         ```bash
         npm install dotenv
         ```
-    *   Then, add the following line to the very top of `index.js`:
+
+6.  **Configure `index.js` to load `.env`:**
+    *   Ensure the following line is at the very top of your `index.js` file. This line tells your application to load the variables from `.env`:
         ```javascript
         require('dotenv').config();
         ```
@@ -135,6 +142,12 @@ To run this application on your local machine, you will need to have Node.js and
 The application uses a PostgreSQL database. The schema is defined in `index.js` and the tables (`sgp`, `mrf`, `ltp`) are created automatically when the application starts if they do not already exist.
 
 ---
+
+postgres
+SPAJ_ISWMC_01
+psql postgres
+rogerwollie2
+Treasure@2020
 
 ## Developer Information
 
