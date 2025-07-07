@@ -14,6 +14,7 @@ This project is a web-based data collection application for the Greenviro SPAJ I
     *   Weighbridge (WBS)
     *   Anaerobic Digester (ADS)
     *   Depot Repair Area (DRA)
+*   **Stored Data View:** A dedicated page to view the last seven days of operational data for SGP, MRF, and LTP in a tabular format.
 
 ## System and Program Architecture
 
@@ -42,7 +43,7 @@ The application follows a client-server architecture:
 
 ## Technologies Used
 
-*   **Backend:** Node.js, Express.js
+*   **Backend:** Node.js, Express.js, Moment.js
 *   **Database:** PostgreSQL
 *   **Frontend:** EJS (Embedded JavaScript), Bootstrap
 *   **Version Control:** Git
