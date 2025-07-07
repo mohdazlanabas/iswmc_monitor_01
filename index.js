@@ -65,7 +65,8 @@ const createTables = async () => {
                 grappler_b_mode TEXT,
                 grappler_b_running REAL,
                 grappler_b_downtime REAL,
-                grappler_b_working REAL
+                grappler_b_working REAL,
+                issues TEXT
             )
         `);
 
@@ -135,7 +136,7 @@ app.post('/mrf', async (req, res) => {
         incoming_line_b_process, incoming_recyclables_plastics, incoming_recyclables_metals, incoming_leachate,
         outgoing_organic_output, outgoing_inert_output, grappler_a_grabs, grappler_a_mode, grappler_a_running,
         grappler_a_downtime, grappler_a_working, grappler_b_grabs, grappler_b_mode, grappler_b_running,
-        grappler_b_downtime, grappler_b_working
+        grappler_b_downtime, grappler_b_working, issues
     } = req.body;
     const query = `
         INSERT INTO mrf (
@@ -144,8 +145,8 @@ app.post('/mrf', async (req, res) => {
             incoming_line_b_process, incoming_recyclables_plastics, incoming_recyclables_metals, incoming_leachate,
             outgoing_organic_output, outgoing_inert_output, grappler_a_grabs, grappler_a_mode, grappler_a_running,
             grappler_a_downtime, grappler_a_working, grappler_b_grabs, grappler_b_mode, grappler_b_running,
-            grappler_b_downtime, grappler_b_working
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26)
+            grappler_b_downtime, grappler_b_working, issues
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27)
     `;
     const values = [
         date, day, trucks_compactor, trucks_open_tipper, trucks_roro, trucks_open_truck,
@@ -153,7 +154,7 @@ app.post('/mrf', async (req, res) => {
         incoming_line_b_process, incoming_recyclables_plastics, incoming_recyclables_metals, incoming_leachate,
         outgoing_organic_output, outgoing_inert_output, grappler_a_grabs, grappler_a_mode, grappler_a_running,
         grappler_a_downtime, grappler_a_working, grappler_b_grabs, grappler_b_mode, grappler_b_running,
-        grappler_b_downtime, grappler_b_working
+        grappler_b_downtime, grappler_b_working, issues
     ];
 
     try {

@@ -93,6 +93,7 @@
                         <th>Grappler B Running</th>
                         <th>Grappler B Downtime</th>
                         <th>Grappler B Working</th>
+                        <th>Issues</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -124,10 +125,11 @@
                             <td><%= row.grappler_b_running %></td>
                             <td><%= row.grappler_b_downtime %></td>
                             <td><%= row.grappler_b_working %></td>
+                            <td><%= row.issues %></td>
                         </tr>
                     <% }); %>
                     <% if (mrfData.length === 0) { %>
-                        <tr><td colspan="26">No MRF data available for the last 7 days.</td></tr>
+                        <tr><td colspan="27">No MRF data available for the last 7 days.</td></tr>
                     <% } %>
                 </tbody>
             </table>
