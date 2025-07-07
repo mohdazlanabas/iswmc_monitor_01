@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stored Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        @media (max-width: 768px) {
+            .container h1 {
+                font-size: 1.5rem; /* Smaller font size for title on mobile */
+                margin-top: 20px !important; /* Adjust top margin */
+            }
+            img {
+                width: 100px !important; /* Smaller logo on mobile */
+                top: 5px !important; /* Adjust logo position */
+                right: 5px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="/assets/logo.png" alt="Greenviro Solutions Logo" style="position: absolute; top: 10px; right: 10px; width: 150px;">
+    <div class="container">
+        <h1 class="mt-5">Stored Data (Last 7 Days)</h1>
+
+        <h2 class="mt-4">Security Guard Post (SGP)</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Name</th>
+                        <th>Company</th>
+                        <th>Purpose</th>
+                        <th>Phone</th>
+                        <th>ID No.</th>
+                        <th>Email</th>
+                        <th>PIC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% sgpData.forEach(row => { %>
+                        <tr>
+                            <td><%= row.date %></td>
+                            <td><%= row.day %></td>
+                            <td><%= row.name %></td>
+                            <td><%= row.from_company %></td>
+                            <td><%= row.purpose_of_visit %></td>
+                            <td><%= row.phone_number %></td>
+                            <td><%= row.id_number %></td>
+                            <td><%= row.email_address %></td>
+                            <td><%= row.pic_to_meet %></td>
+                        </tr>
+                    <% }); %>
+                    <% if (sgpData.length === 0) { %>
+                        <tr><td colspan="9">No SGP data available for the last 7 days.</td></tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="mt-4">Material Recovery Facility (MRF)</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Trucks Compactor</th>
+                        <th>Trucks Open Tipper</th>
+                        <th>Trucks RORO</th>
+                        <th>Trucks Open Truck</th>
+                        <th>Incoming Bunker</th>
+                        <th>Incoming 1st Floor Sorting</th>
+                        <th>Incoming Tipping Platform</th>
+                        <th>Incoming Line A Process</th>
+                        <th>Incoming Line B Process</th>
+                        <th>Incoming Recyclables Plastics</th>
+                        <th>Incoming Recyclables Metals</th>
+                        <th>Incoming Leachate</th>
+                        <th>Outgoing Organic Output</th>
+                        <th>Outgoing Inert Output</th>
+                        <th>Grappler A Grabs</th>
+                        <th>Grappler A Mode</th>
+                        <th>Grappler A Running</th>
+                        <th>Grappler A Downtime</th>
+                        <th>Grappler A Working</th>
+                        <th>Grappler B Grabs</th>
+                        <th>Grappler B Mode</th>
+                        <th>Grappler B Running</th>
+                        <th>Grappler B Downtime</th>
+                        <th>Grappler B Working</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% mrfData.forEach(row => { %>
+                        <tr>
+                            <td><%= row.date %></td>
+                            <td><%= row.day %></td>
+                            <td><%= row.trucks_compactor %></td>
+                            <td><%= row.trucks_open_tipper %></td>
+                            <td><%= row.trucks_roro %></td>
+                            <td><%= row.trucks_open_truck %></td>
+                            <td><%= row.incoming_bunker %></td>
+                            <td><%= row.incoming_1st_floor_sorting %></td>
+                            <td><%= row.incoming_tipping_platform %></td>
+                            <td><%= row.incoming_line_a_process %></td>
+                            <td><%= row.incoming_line_b_process %></td>
+                            <td><%= row.incoming_recyclables_plastics %></td>
+                            <td><%= row.incoming_recyclables_metals %></td>
+                            <td><%= row.incoming_leachate %></td>
+                            <td><%= row.outgoing_organic_output %></td>
+                            <td><%= row.outgoing_inert_output %></td>
+                            <td><%= row.grappler_a_grabs %></td>
+                            <td><%= row.grappler_a_mode %></td>
+                            <td><%= row.grappler_a_running %></td>
+                            <td><%= row.grappler_a_downtime %></td>
+                            <td><%= row.grappler_a_working %></td>
+                            <td><%= row.grappler_b_grabs %></td>
+                            <td><%= row.grappler_b_mode %></td>
+                            <td><%= row.grappler_b_running %></td>
+                            <td><%= row.grappler_b_downtime %></td>
+                            <td><%= row.grappler_b_working %></td>
+                        </tr>
+                    <% }); %>
+                    <% if (mrfData.length === 0) { %>
+                        <tr><td colspan="26">No MRF data available for the last 7 days.</td></tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="mt-4">Leachate Treatment Plant (LTP)</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Operation</th>
+                        <th>Flowrate</th>
+                        <th>Incoming Flow</th>
+                        <th>Treated Final Discharge</th>
+                        <th>Issues</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% ltpData.forEach(row => { %>
+                        <tr>
+                            <td><%= row.date %></td>
+                            <td><%= row.day %></td>
+                            <td><%= row.operation %></td>
+                            <td><%= row.flowrate %></td>
+                            <td><%= row.incoming_flow %></td>
+                            <td><%= row.treated_final_discharge %></td>
+                            <td><%= row.issues %></td>
+                        </tr>
+                    <% }); %>
+                    <% if (ltpData.length === 0) { %>
+                        <tr><td colspan="7">No LTP data available for the last 7 days.</td></tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="mt-4">Weighbridge (WBS)</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="3">WBS data is not yet implemented.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="mt-4">Anaerobic Digester (ADS)</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="3">ADS data is not yet implemented.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="mt-4">Depot Repair Area (DRA)</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="3">DRA data is not yet implemented.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-4 mb-5">
+            <a href="/" class="btn btn-primary">Home</a>
+        </div>
+    </div>
+</body>
+</html>

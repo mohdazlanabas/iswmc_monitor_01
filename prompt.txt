@@ -45,3 +45,7 @@ I must be desktop and mobile friendly
 Able to work on all web browser particularly Chrome, Safari, Firefox.
 
 Add Home Button to All Pages.
+
+On the home page. Add below "Depot Repair Area" a selection button marked "See Data". When clicked the "See Data" button, it goes to       │
+a page named "Stored Data". On this "Stored Data" page, its shows pass seven days data of SGP, MFR, LTP, WBS, ADS, DRA in a table format. Add a "Home" button on the       │
+"Stored Data" page similar to the "Home" button on other pages.

@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const moment = require('moment');
 const { Pool } = require('pg');
 const path = require('path');
 
@@ -14,7 +15,7 @@ const port = process.env.PORT || 3000;
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   // Use SSL in production (on Render)
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
 });
 
 // Function to create tables if they don't exist
@@ -195,6 +196,25 @@ app.get('/ads', (req, res) => {
 
 app.get('/dra', (req, res) => {
     res.render('placeholder', { facility: 'Depot Repair Area (DRA)' });
+});
+
+app.get('/stored_data', async (req, res) => {
+    try {
+        const sevenDaysAgo = moment().subtract(7, 'days').format('YYYY-MM-DD');
+
+        const sgpData = await pool.query('SELECT * FROM sgp WHERE date >= $1 ORDER BY date DESC', [sevenDaysAgo]);
+        const mrfData = await pool.query('SELECT * FROM mrf WHERE date >= $1 ORDER BY date DESC', [sevenDaysAgo]);
+        const ltpData = await pool.query('SELECT * FROM ltp WHERE date >= $1 ORDER BY date DESC', [sevenDaysAgo]);
+
+        res.render('stored_data', {
+            sgpData: sgpData.rows,
+            mrfData: mrfData.rows,
+            ltpData: ltpData.rows
+        });
+    } catch (err) {
+        console.error('Error fetching stored data:', err);
+        res.status(500).send('Error fetching stored data');
+    }
 });
 
 app.listen(port, () => {
