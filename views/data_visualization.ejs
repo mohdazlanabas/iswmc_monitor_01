@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Data Visualization</h1>
+        
+        <div class="mt-4">
+            <h2>SGP</h2>
+            <p>Number of Visitors:</p>
+            <ul>
+                <li>Past One Week: <%= sgp.weekly_visitors %></li>
+                <li>Past One Month: <%= sgp.monthly_visitors %></li>
+                <li>Past One Year: <%= sgp.yearly_visitors %></li>
+            </ul>
+        </div>
+
+        <div class="mt-4">
+            <h2>MRF</h2>
+            <p>Total Number Of All Trucks:</p>
+            <ul>
+                <li>Past One Week: <%= mrf.weekly_trucks %></li>
+                <li>Past One Month: <%= mrf.monthly_trucks %></li>
+                <li>Past One Year: <%= mrf.yearly_trucks %></li>
+            </ul>
+            <p>Total Incoming Tonnage:</p>
+            <ul>
+                <li>Past One Week: <%= mrf.weekly_incoming_tonnage %></li>
+                <li>Past One Month: <%= mrf.monthly_incoming_tonnage %></li>
+                <li>Past One Year: <%= mrf.yearly_incoming_tonnage %></li>
+            </ul>
+            <p>Total Line Process:</p>
+            <ul>
+                <li>Past One Week: <%= mrf.weekly_line_process %></li>
+                <li>Past One Month: <%= mrf.monthly_line_process %></li>
+                <li>Past One Year: <%= mrf.yearly_line_process %></li>
+            </ul>
+            <p>Total Recyclables:</p>
+            <ul>
+                <li>Past One Week: <%= mrf.weekly_recyclables %></li>
+                <li>Past One Month: <%= mrf.monthly_recyclables %></li>
+                <li>Past One Year: <%= mrf.yearly_recyclables %></li>
+            </ul>
+            <p>Total Organic Output:</p>
+            <ul>
+                <li>Past One Week: <%= mrf.weekly_organic_output %></li>
+                <li>Past One Month: <%= mrf.monthly_organic_output %></li>
+                <li>Past One Year: <%= mrf.yearly_organic_output %></li>
+            </ul>
+            <p>Total Inert Output:</p>
+            <ul>
+                <li>Past One Week: <%= mrf.weekly_inert_output %></li>
+                <li>Past One Month: <%= mrf.monthly_inert_output %></li>
+                <li>Past One Year: <%= mrf.yearly_inert_output %></li>
+            </ul>
+            <p>Total Number Of Grabs (Grappler A):</p>
+            <ul>
+                <li>Past One Week: <%= mrf.weekly_grappler_a_grabs %></li>
+                <li>Past One Month: <%= mrf.monthly_grappler_a_grabs %></li>
+                <li>Past One Year: <%= mrf.yearly_grappler_a_grabs %></li>
+            </ul>
+            <p>Total Number Of Grabs (Grappler B):</p>
+            <ul>
+                <li>Past One Week: <%= mrf.weekly_grappler_b_grabs %></li>
+                <li>Past One Month: <%= mrf.monthly_grappler_b_grabs %></li>
+                <li>Past One Year: <%= mrf.yearly_grappler_b_grabs %></li>
+            </ul>
+        </div>
+
+        <div class="mt-4">
+            <h2>LTP</h2>
+            <p>Total Flowrate:</p>
+            <ul>
+                <li>Past One Week: <%= ltp.weekly_flowrate %></li>
+                <li>Past One Month: <%= ltp.monthly_flowrate %></li>
+                <li>Past One Year: <%= ltp.yearly_flowrate %></li>
+            </ul>
+            <p>Total Incoming Flowrate:</p>
+            <ul>
+                <li>Past One Week: <%= ltp.weekly_incoming_flow %></li>
+                <li>Past One Month: <%= ltp.monthly_incoming_flow %></li>
+                <li>Past One Year: <%= ltp.yearly_incoming_flow %></li>
+            </ul>
+            <p>Total Treated Final:</p>
+            <ul>
+                <li>Past One Week: <%= ltp.weekly_treated_final_discharge %></li>
+                <li>Past One Month: <%= ltp.monthly_treated_final_discharge %></li>
+                <li>Past One Year: <%= ltp.yearly_treated_final_discharge %></li>
+            </ul>
+        </div>
+
+        <div class="mt-4">
+            <h2>Weighbridge</h2>
+            <p>Placeholder for Weighbridge data.</p>
+        </div>
+
+        <div class="mt-4">
+            <h2>Anaerobic Digester</h2>
+            <p>Placeholder for Anaerobic Digester data.</p>
+        </div>
+
+        <div class="mt-4">
+            <h2>Depot Repair Area</h2>
+            <p>Placeholder for Depot Repair Area data.</p>
+        </div>
+
+        <a href="/" class="btn btn-primary mt-3 mb-5">Home</a>
+    </div>
+</body>
+</html>

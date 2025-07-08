@@ -226,6 +226,75 @@ app.get('/stored_data', async (req, res) => {
     }
 });
 
+app.get('/data_visualization', async (req, res) => {
+    try {
+        const oneWeekAgo = moment().subtract(7, 'days').format('YYYY-MM-DD');
+        const oneMonthAgo = moment().subtract(1, 'months').format('YYYY-MM-DD');
+        const oneYearAgo = moment().subtract(1, 'years').format('YYYY-MM-DD');
+
+        const sgpData = await pool.query('SELECT COUNT(*) as count, date FROM sgp GROUP BY date');
+        const mrfData = await pool.query('SELECT * FROM mrf');
+        const ltpData = await pool.query('SELECT * FROM ltp');
+
+        const now = moment();
+
+        const filterAndSum = (data, dateField, valueField, days) => {
+            const threshold = moment().subtract(days, 'days');
+            return data.rows.filter(row => moment(row[dateField]).isAfter(threshold)).reduce((acc, row) => acc + (parseFloat(row[valueField]) || 0), 0);
+        };
+
+        const sgp = {
+            weekly_visitors: sgpData.rows.filter(row => moment(row.date).isAfter(moment().subtract(7, 'days'))).reduce((acc, row) => acc + parseInt(row.count), 0),
+            monthly_visitors: sgpData.rows.filter(row => moment(row.date).isAfter(moment().subtract(30, 'days'))).reduce((acc, row) => acc + parseInt(row.count), 0),
+            yearly_visitors: sgpData.rows.filter(row => moment(row.date).isAfter(moment().subtract(365, 'days'))).reduce((acc, row) => acc + parseInt(row.count), 0),
+        };
+
+        const mrf = {
+            weekly_trucks: filterAndSum(mrfData, 'date', 'trucks_compactor', 7) + filterAndSum(mrfData, 'date', 'trucks_open_tipper', 7) + filterAndSum(mrfData, 'date', 'trucks_roro', 7) + filterAndSum(mrfData, 'date', 'trucks_open_truck', 7),
+            monthly_trucks: filterAndSum(mrfData, 'date', 'trucks_compactor', 30) + filterAndSum(mrfData, 'date', 'trucks_open_tipper', 30) + filterAndSum(mrfData, 'date', 'trucks_roro', 30) + filterAndSum(mrfData, 'date', 'trucks_open_truck', 30),
+            yearly_trucks: filterAndSum(mrfData, 'date', 'trucks_compactor', 365) + filterAndSum(mrfData, 'date', 'trucks_open_tipper', 365) + filterAndSum(mrfData, 'date', 'trucks_roro', 365) + filterAndSum(mrfData, 'date', 'trucks_open_truck', 365),
+            weekly_incoming_tonnage: filterAndSum(mrfData, 'date', 'incoming_bunker', 7) + filterAndSum(mrfData, 'date', 'incoming_1st_floor_sorting', 7) + filterAndSum(mrfData, 'date', 'incoming_tipping_platform', 7),
+            monthly_incoming_tonnage: filterAndSum(mrfData, 'date', 'incoming_bunker', 30) + filterAndSum(mrfData, 'date', 'incoming_1st_floor_sorting', 30) + filterAndSum(mrfData, 'date', 'incoming_tipping_platform', 30),
+            yearly_incoming_tonnage: filterAndSum(mrfData, 'date', 'incoming_bunker', 365) + filterAndSum(mrfData, 'date', 'incoming_1st_floor_sorting', 365) + filterAndSum(mrfData, 'date', 'incoming_tipping_platform', 365),
+            weekly_line_process: filterAndSum(mrfData, 'date', 'incoming_line_a_process', 7) + filterAndSum(mrfData, 'date', 'incoming_line_b_process', 7),
+            monthly_line_process: filterAndSum(mrfData, 'date', 'incoming_line_a_process', 30) + filterAndSum(mrfData, 'date', 'incoming_line_b_process', 30),
+            yearly_line_process: filterAndSum(mrfData, 'date', 'incoming_line_a_process', 365) + filterAndSum(mrfData, 'date', 'incoming_line_b_process', 365),
+            weekly_recyclables: filterAndSum(mrfData, 'date', 'incoming_recyclables_plastics', 7) + filterAndSum(mrfData, 'date', 'incoming_recyclables_metals', 7),
+            monthly_recyclables: filterAndSum(mrfData, 'date', 'incoming_recyclables_plastics', 30) + filterAndSum(mrfData, 'date', 'incoming_recyclables_metals', 30),
+            yearly_recyclables: filterAndSum(mrfData, 'date', 'incoming_recyclables_plastics', 365) + filterAndSum(mrfData, 'date', 'incoming_recyclables_metals', 365),
+            weekly_organic_output: filterAndSum(mrfData, 'date', 'outgoing_organic_output', 7),
+            monthly_organic_output: filterAndSum(mrfData, 'date', 'outgoing_organic_output', 30),
+            yearly_organic_output: filterAndSum(mrfData, 'date', 'outgoing_organic_output', 365),
+            weekly_inert_output: filterAndSum(mrfData, 'date', 'outgoing_inert_output', 7),
+            monthly_inert_output: filterAndSum(mrfData, 'date', 'outgoing_inert_output', 30),
+            yearly_inert_output: filterAndSum(mrfData, 'date', 'outgoing_inert_output', 365),
+            weekly_grappler_a_grabs: filterAndSum(mrfData, 'date', 'grappler_a_grabs', 7),
+            monthly_grappler_a_grabs: filterAndSum(mrfData, 'date', 'grappler_a_grabs', 30),
+            yearly_grappler_a_grabs: filterAndSum(mrfData, 'date', 'grappler_a_grabs', 365),
+            weekly_grappler_b_grabs: filterAndSum(mrfData, 'date', 'grappler_b_grabs', 7),
+            monthly_grappler_b_grabs: filterAndSum(mrfData, 'date', 'grappler_b_grabs', 30),
+            yearly_grappler_b_grabs: filterAndSum(mrfData, 'date', 'grappler_b_grabs', 365),
+        };
+
+        const ltp = {
+            weekly_flowrate: filterAndSum(ltpData, 'date', 'flowrate', 7),
+            monthly_flowrate: filterAndSum(ltpData, 'date', 'flowrate', 30),
+            yearly_flowrate: filterAndSum(ltpData, 'date', 'flowrate', 365),
+            weekly_incoming_flow: filterAndSum(ltpData, 'date', 'incoming_flow', 7),
+            monthly_incoming_flow: filterAndSum(ltpData, 'date', 'incoming_flow', 30),
+            yearly_incoming_flow: filterAndSum(ltpData, 'date', 'incoming_flow', 365),
+            weekly_treated_final_discharge: filterAndSum(ltpData, 'date', 'treated_final_discharge', 7),
+            monthly_treated_final_discharge: filterAndSum(ltpData, 'date', 'treated_final_discharge', 30),
+            yearly_treated_final_discharge: filterAndSum(ltpData, 'date', 'treated_final_discharge', 365),
+        };
+
+        res.render('data_visualization', { sgp, mrf, ltp });
+    } catch (err) {
+        console.error('Error fetching data for visualization:', err);
+        res.status(500).send('Error fetching data for visualization');
+    }
+});
+
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });

@@ -49,3 +49,30 @@ Add Home Button to All Pages.
 On the home page. Add below "Depot Repair Area" a selection button marked "See Data". When clicked the "See Data" button, it goes to       │
 a page named "Stored Data". On this "Stored Data" page, its shows pass seven days data of SGP, MFR, LTP, WBS, ADS, DRA in a table format. Add a "Home" button on the       │
 "Stored Data" page similar to the "Home" button on other pages.
+
+Add one new page named Data Visualization
+In the home page underneath the See Data Button, Add a link to go to the Data Visualization Page
+In the Data Visualization Page Have This Items Summary Collected From The Database
+
+SGP 
+- Number of Visitors By Past One Week, Past One Month, Past One Year
+MRF 
+- Total Number Of All Trucks (Compactpr, Tipperm RORO, open Truck) By Past One Week, Past One Month, Past One Year
+- Total Incoming Tonnage (Bunker, 1st Floor Sorting, Tipping Platform) By Past One Week, Past One Month, Past One Year
+- Total Line Process (Line A and Line) By Past One Week, Past One Month, Past One Year
+- Total Recycables (Plastics & Metal) By Past One Week, Past One Month, Past One Year
+- Total Organic Output BBy Past One Week, Past One Month, Past One Year
+- Total Inert Output By Past One Week, Past One Month, Past One Year
+- Total Number Of Grabs (Grappler A) By Past One Week, Past One Month, Past One Year
+- Total Number Of Grabs (Grappler B) By Past One Week, Past One Month, Past One Year
+
+LTP
+- Total FLowrate By Past One Week, Past One Month, Past One Year
+- Total Incoming FLowrate By Past One Week, Past One Month, Past One Yea
+- Total Treated Final By Past One Week, Past One Month, Past One Yea
+
+Weighbridge - Prepare A Placeholder
+Anaerobic Digester - Prepare A Placeholder
+Depot Repair Area - Prepare A Placeholder
+
+Add a Home Button at the bottom Data Visualization page
