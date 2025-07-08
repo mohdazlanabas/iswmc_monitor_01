@@ -65,9 +65,17 @@ const createTables = async () => {
                 grappler_b_mode TEXT,
                 grappler_b_running REAL,
                 grappler_b_downtime REAL,
-                grappler_b_working REAL,
-                issues TEXT
-            )
+                grappler_b_working REAL
+            );
+
+            -- Add issues column if it doesn't exist
+            DO $
+            BEGIN
+                IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='mrf' AND column_name='issues') THEN
+                    ALTER TABLE mrf ADD COLUMN issues TEXT;
+                END IF;
+            END
+            $;
         `);
 
         await client.query(`
